@@ -3,11 +3,15 @@
 #include <glm/glm.hpp>
 #include <iostream>
 #include <Engine.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 int main()
 {
 
 	std::cout << func() << "\n";
+	Assimp::Importer importer;
 
 	int windowWidth = 800;
 	int windowHeight = 600;
