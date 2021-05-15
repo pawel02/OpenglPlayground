@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 add_subdirectory("${PROJECT_SOURCE_DIR}/vendor/glfw")
-add_subdirectory("${PROJECT_SOURCE_DIR}/vendor/glm")
 add_subdirectory("${PROJECT_SOURCE_DIR}/vendor/glad")
 add_subdirectory("${PROJECT_SOURCE_DIR}/vendor/assimp")
 add_subdirectory("${PROJECT_SOURCE_DIR}/Engine")
