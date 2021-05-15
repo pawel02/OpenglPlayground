@@ -1,3 +1,9 @@
 #pragma once
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-int func();
+namespace Engine
+{
+    extern GLFWwindow* window;
+    GLFWwindow* createWindow();
+}

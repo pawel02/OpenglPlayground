@@ -14,7 +14,6 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE "${PROJECT_SOURCE_DIR}/../vendor/stb_image"
     PRIVATE "${PROJECT_SOURCE_DIR}/../vendor/assimp/include"
     PRIVATE "${PROJECT_BINARY_DIR}/../vendor/assimp/include"
-    PRIVATE "${PROJECT_SOURCE_DIR}/../Engine"
 )
 
 target_link_directories(${PROJECT_NAME} 
@@ -22,4 +21,4 @@ target_link_directories(${PROJECT_NAME}
     PRIVATE "${PROJECT_BINARY_DIR}/../vendor/assimp/lib/Debug"
 )
 
-target_link_libraries(${PROJECT_NAME} glfw opengl32.lib glad)
+target_link_libraries(${PROJECT_NAME} glfw opengl32.lib glad assimp-vc142-mtd zlibstaticd)
