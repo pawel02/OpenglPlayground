@@ -5,7 +5,21 @@ project(Engine VERSION 0.1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_library(${PROJECT_NAME} Engine.cpp)
+# Add all the cpp files
+file(GLOB SOURCES 
+    PRIVATE "${PROJECT_SOURCE_DIR}/Shaders/*.cpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/Core/*.cpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/*.cpp"
+)
+
+# add all the header files
+file(GLOB HEADERS 
+    PRIVATE "${PROJECT_SOURCE_DIR}/Shaders/*.hpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/Core/*.hpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/*.hpp"
+)
+
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 #Add Libraries
 target_include_directories(${PROJECT_NAME} 

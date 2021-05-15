@@ -1,15 +1,15 @@
-#include <Engine.h>
+#include <Engine.hpp>
 
 #include <assimp/Importer.hpp>
 
 int main()
 {
-	GLFWwindow* window = Engine::createWindow();
-	Assimp::Importer importer;
+	Engine::Window window{800, 600, "Example window"};
+	window.createWindow();
 
-	while (!glfwWindowShouldClose(window))
+	while (window.isOpen())
 	{
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(window.getWindowPointer());
 		glfwPollEvents();
 	}
 
