@@ -2,9 +2,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <iostream>
+#include <Engine.h>
 
 int main()
 {
+
+	std::cout << func() << "\n";
 
 	int windowWidth = 800;
 	int windowHeight = 600;

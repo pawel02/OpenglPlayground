@@ -1,5 +1,8 @@
-# Experimental OpenGL project
-I am currently eperimenting with different features of OpenGL and I wanted to use Cmake for the first time in a proper project so that this can be build on multiple differnt platforms
+# About
+This project was made to learn more about C++, Cmake, OpenGL, GLSL, Game Engines
+
+# Structure
+The Engine project creates a library which is linked against in the examples. The engine contains some very useful OpenGL Abstractions to make it easier to work with.
 
 # Building
 To build the project you will need to have CMake installed on your machine \
