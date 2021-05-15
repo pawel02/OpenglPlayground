@@ -6,6 +6,12 @@
 
 #include <glm/glm.hpp>
 
+struct ShaderStruct
+{
+    int shaderType;
+    const char* shaderFile;
+};
+
 /*
 Basic shader abstraction
 Use example
@@ -23,6 +29,8 @@ public:
     Shader(const char* vertexFile, const char* fragmentFile) noexcept;
 
     void addShader(int shaderType, const char* shaderFile) noexcept;
+    //convinience function to help with adding multiple shaders at once
+    void addShader(std::initializer_list<ShaderStruct> shaders) noexcept;
 
     /*
     Creates the program and deletes the shaders
@@ -32,19 +40,19 @@ public:
 
 //all of the possible uniforms
 public:
-	void set_uniform_mat4f(const char* uniform_name, const glm::mat4& matrix);
+	void set_uniform_mat4f(const char* uniformName, const glm::mat4& matrix);
 
-	void set_uniform_4f(const char* uniform_name, float x, float y, float z, float w) noexcept;
-	void set_uniform_4f(const char* uniform_name, glm::vec4& vec) noexcept;
+	void set_uniform_4f(const char* uniformName, float x, float y, float z, float w) noexcept;
+	void set_uniform_4f(const char* uniformName, glm::vec4& vec) noexcept;
 
-	void set_uniform_3f(const char* uniform_name, float x, float y, float z) noexcept;
-    void set_uniform_3f(const char* uniform_name, glm::vec3& vec) noexcept;
+	void set_uniform_3f(const char* uniformName, float x, float y, float z) noexcept;
+    void set_uniform_3f(const char* uniformName, glm::vec3& vec) noexcept;
 	
-	void set_uniform_1i(const char* uniform_name, int i);
-	void set_uniform_1f(const char* uniform_name, float i);
+	void set_uniform_1i(const char* uniformName, int i);
+	void set_uniform_1f(const char* uniformName, float i);
 
 private:
-	int get_uniform_location(const char* uniform_name) noexcept;
+	int get_uniform_location(const char* uniformName) noexcept;
 
 private:
     void deleteShaders() noexcept;

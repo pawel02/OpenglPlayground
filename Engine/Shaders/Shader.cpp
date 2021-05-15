@@ -9,8 +9,20 @@ namespace Engine
 
 Shader::Shader(const char* vertexFile, const char* fragmentFile) noexcept
 {
-    addShader(GL_VERTEX_SHADER, vertexFile);
-    addShader(GL_FRAGMENT_SHADER, fragmentFile);
+    addShader({ 
+        ShaderStruct{GL_VERTEX_SHADER, vertexFile},
+        ShaderStruct{GL_FRAGMENT_SHADER, fragmentFile}
+    });
+
+    createProgram();
+}
+
+void Shader::addShader(std::initializer_list<ShaderStruct> shaders) noexcept
+{
+    for(const auto& shader : shaders)
+    {
+        addShader(shader.shaderType, shader.shaderFile);
+    }
 }
 
 /*
@@ -81,7 +93,29 @@ void Shader::createProgram() noexcept
 
 #endif
 
+    deleteShaders();
     bind();
+}
+//define all of the uniforms
+int Shader::get_uniform_location(const char* uniformName) noexcept
+{
+    //making sure that the program is bound
+    bind();
+    if (uniformLocations.find(uniformName) != uniformLocations.end())
+    {
+        return uniformLocations.at(uniformName);
+    }
+
+    int uniformLocation = glGetUniformLocation(_program, uniformName);
+    uniformLocations.insert(std::pair<const char*, int>{ uniformName, uniformLocation});
+#ifdef _DEBUG
+    if (uniformLocation < 0)
+    {
+        assert("Could not find the unifrom");
+    }
+#endif
+
+    return uniformLocation;
 }
 
 void Shader::set_uniform_mat4f(const char* uniform_name, const glm::mat4& matrix)

@@ -2,7 +2,6 @@
 
 This is the order that I need to abstract things
 - window
-- Shaders 
 - Buffers (VAO, VBO, IBO, GL_UNIFORM_BUFFER, FRAMEBUFFER)
 - Textures
 - Events
