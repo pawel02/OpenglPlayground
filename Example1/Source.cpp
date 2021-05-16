@@ -16,9 +16,12 @@ int main()
 	Engine::CameraPer camera{ 800, 600};
 
 	//Create simple cube mesh
-	Engine::VertexArray<float, unsigned int> VAO{std::move(Engine::Meshes::createSimpleCube())};
+	Engine::VertexArray<float, unsigned int> VAO{std::move(Engine::Meshes::createCube())};
 	VAO.CreateVertexArray();
-	Engine::Shader program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\vs.glsl", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fs.glsl" };
+	Engine::Shader program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\basic.vs", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\basic.fs" };
+
+	Engine::Texture2D texture{};
+	texture.add_texture("E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\shared_assets\\tex1.jpg");
 
 	//create a default cubemap
 	Engine::Cubemap cubemap{&camera};
@@ -36,6 +39,7 @@ int main()
 
 		VAO.bind();
 		program.bind();
+		texture.bindAll();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//draw the cubemap
