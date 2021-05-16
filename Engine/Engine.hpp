@@ -6,3 +6,4 @@
 #include "Core/Window.hpp"
 #include "Core/Buffers.hpp"
 #include "Core/VertexArray.hpp"
+#include "Textures/Texture2D.hpp"
