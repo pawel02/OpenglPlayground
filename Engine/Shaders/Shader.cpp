@@ -97,7 +97,7 @@ void Shader::createProgram() noexcept
     bind();
 }
 //define all of the uniforms
-int Shader::get_uniform_location(const char* uniformName) noexcept
+int Shader::getUniformLocation(const char* uniformName) noexcept
 {
     //making sure that the program is bound
     bind();
@@ -118,44 +118,44 @@ int Shader::get_uniform_location(const char* uniformName) noexcept
     return uniformLocation;
 }
 
-void Shader::set_uniform_mat4f(const char* uniform_name, const glm::mat4& matrix)
+void Shader::setUniformMat4f(const char* uniform_name, const glm::mat4& matrix)
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniformMatrix4fv(uniform_location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-void Shader::set_uniform_4f(const char* uniform_name, float x, float y, float z, float w) noexcept
+void Shader::setUniform4f(const char* uniform_name, float x, float y, float z, float w) noexcept
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform4f(uniform_location, x, y, z, w);
 }
 
-void Shader::set_uniform_4f(const char* uniform_name, glm::vec4& vec) noexcept
+void Shader::setUniform4f(const char* uniform_name, glm::vec4& vec) noexcept
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform4f(uniform_location, vec.x, vec.y, vec.z, vec.w);
 }
 
-void Shader::set_uniform_3f(const char* uniform_name, float x, float y, float z) noexcept
+void Shader::setUniform3f(const char* uniform_name, float x, float y, float z) noexcept
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform3f(uniform_location, x, y, z);
 }
-void Shader::set_uniform_3f(const char* uniform_name, glm::vec3& vec) noexcept
+void Shader::setUniform3f(const char* uniform_name, glm::vec3& vec) noexcept
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform3f(uniform_location, vec.x, vec.y, vec.z);
 }
 
-void Shader::set_uniform_1i(const char* uniform_name, int i)
+void Shader::setUniform1i(const char* uniform_name, int i)
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform1i(uniform_location, i);
 }
 
-void Shader::set_uniform_1f(const char* uniform_name, float i)
+void Shader::setUniform1f(const char* uniform_name, float i)
 {
-	int uniform_location = get_uniform_location(uniform_name);
+	int uniform_location = getUniformLocation(uniform_name);
 	glUniform1f(uniform_location, i);
 }
 

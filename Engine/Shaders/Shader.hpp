@@ -36,23 +36,24 @@ public:
     Creates the program and deletes the shaders
     */
     void createProgram() noexcept;
+    unsigned int getProgram() const noexcept { return _program; }
     void bind() const noexcept { glUseProgram(_program); };
 
 //all of the possible uniforms
 public:
-	void set_uniform_mat4f(const char* uniformName, const glm::mat4& matrix);
+	void setUniformMat4f(const char* uniformName, const glm::mat4& matrix);
 
-	void set_uniform_4f(const char* uniformName, float x, float y, float z, float w) noexcept;
-	void set_uniform_4f(const char* uniformName, glm::vec4& vec) noexcept;
+	void setUniform4f(const char* uniformName, float x, float y, float z, float w) noexcept;
+	void setUniform4f(const char* uniformName, glm::vec4& vec) noexcept;
 
-	void set_uniform_3f(const char* uniformName, float x, float y, float z) noexcept;
-    void set_uniform_3f(const char* uniformName, glm::vec3& vec) noexcept;
+	void setUniform3f(const char* uniformName, float x, float y, float z) noexcept;
+    void setUniform3f(const char* uniformName, glm::vec3& vec) noexcept;
 	
-	void set_uniform_1i(const char* uniformName, int i);
-	void set_uniform_1f(const char* uniformName, float i);
+	void setUniform1i(const char* uniformName, int i);
+	void setUniform1f(const char* uniformName, float i);
 
 private:
-	int get_uniform_location(const char* uniformName) noexcept;
+	int getUniformLocation(const char* uniformName) noexcept;
 
 private:
     void deleteShaders() noexcept;

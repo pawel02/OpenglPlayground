@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 # Add all the cpp files
 file(GLOB SOURCES 
     PRIVATE "${PROJECT_SOURCE_DIR}/Shaders/*.cpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/*.cpp"
     PRIVATE "${PROJECT_SOURCE_DIR}/Core/*.cpp"
     PRIVATE "${PROJECT_SOURCE_DIR}/*.cpp"
 )
@@ -19,7 +20,7 @@ file(GLOB HEADERS
     PRIVATE "${PROJECT_SOURCE_DIR}/*.hpp"
 )
 
-add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEST})
 
 #Add Libraries
 target_include_directories(${PROJECT_NAME} 

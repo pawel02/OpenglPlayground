@@ -1,6 +1,6 @@
+#include <iostream>
 #include <Engine.hpp>
-
-#include <assimp/Importer.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
 	 0.0f,  0.5f, 0.0f
 	};
 
-	//lets create a rectangle
+	//lets create a triangle
 	unsigned int VAO, VBO;
 	glGenBuffers(1, &VBO);
 	glGenVertexArrays(1, &VAO);
@@ -25,6 +25,12 @@ int main()
 	glEnableVertexAttribArray(0);
 
 	Engine::Shader program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\vs.glsl", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fs.glsl" };
+
+	//Create a uniform buffer
+	Engine::UniformBuffer ubo{16};
+	ubo.bindBufferBlock(2);
+	glm::vec4 data{ 0.5f, 0.5f, 0.5f, 1.0f };
+	ubo.subData(glm::value_ptr(data), 0, sizeof(glm::vec4));
 
 	while (window.isOpen())
 	{
