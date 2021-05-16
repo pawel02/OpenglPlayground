@@ -160,8 +160,8 @@ bool CameraPer::handleMouse(double deltaTime)
 	_lastX = _mouseMoved.x;
 	_lastY = _mouseMoved.y;
 
-	xOffset *= _sensitivity * deltaTime;
-	yOffset *= _sensitivity * deltaTime;
+	xOffset *= _sensitivity;
+	yOffset *= _sensitivity;
 
 	_yaw += xOffset;
 	_pitch += yOffset;
@@ -175,6 +175,7 @@ bool CameraPer::handleMouse(double deltaTime)
 	direction.x = cos(glm::radians(_yaw)) * cos(glm::radians(_pitch));
 	direction.y = sin(glm::radians(_pitch));
 	direction.z = sin(glm::radians(_yaw)) * cos(glm::radians(_pitch));
+	direction *= deltaTime;
 	_cameraFront = glm::normalize(direction);
 
 	return false;

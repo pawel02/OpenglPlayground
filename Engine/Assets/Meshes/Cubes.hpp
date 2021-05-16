@@ -1,11 +1,12 @@
 #pragma once
+#include "../../Core/VertexArray.hpp"
 
 namespace Engine
 {
 namespace Meshes
 {
-
-    float simepleCube[216] = {
+// These are the vertices
+    float simpleCube[216] = {
 		// positions          
 		-1.0f,  1.0f, -1.0f,
 		-1.0f, -1.0f, -1.0f,
@@ -94,5 +95,15 @@ namespace Meshes
 		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 	};
+
+	VertexArray<float, unsigned int> createSimpleCube()
+	{
+		return VertexArray<float, unsigned int>(
+			simpleCube, sizeof(simpleCube),
+			{
+				VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
+			}
+		);
+	}
 }; // NAMESPACE MESHES
 }  // NAMESPACE ENGINE

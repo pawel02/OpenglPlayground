@@ -20,7 +20,7 @@ namespace Engine
 		Cubemap() noexcept
 			:_VAO
 		{
-		 Meshes::simepleCube, sizeof(Engine::Meshes::simepleCube),
+		 Meshes::simpleCube, sizeof(Engine::Meshes::simpleCube),
 			{
 			 VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
 			}
@@ -32,7 +32,7 @@ namespace Engine
 		Cubemap(std::vector<const char*> faces) noexcept
 			:_faces{ faces }, _VAO
 			{
-			 Meshes::simepleCube, sizeof(Engine::Meshes::simepleCube),
+			 Meshes::simpleCube, sizeof(Engine::Meshes::simpleCube),
 				{
 				 VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
 				}

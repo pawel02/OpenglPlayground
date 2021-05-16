@@ -69,7 +69,7 @@ private:
 	double _lastX = 0.0;
 	double _lastY = 0.0;
 
-	float _sensitivity = 3.0f;
+	float _sensitivity = 0.1f;
 
 	float _yaw = -90.0f;
 	float _pitch = 0.0f;

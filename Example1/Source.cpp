@@ -12,22 +12,11 @@ int main()
 	}
 	window.hideCursor();
 
-	float vertices[] = {
-	-0.5f, -0.5f, 0.0f,
-	 0.5f, -0.5f, 0.0f,
-	 0.0f,  0.5f, 0.0f
-	};
-
 	//Create the camera
 	Engine::CameraPer camera{ 800, 600};
 
 	//Create the example triangle
-	Engine::VertexArray<float, unsigned int> VAO{
-		vertices, sizeof(vertices), 
-		{
-			Engine::VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
-		}
-	};
+	Engine::VertexArray<float, unsigned int> VAO{Engine::Meshes::createSimpleCube()};
 
 	VAO.CreateVertexArray();
 
@@ -44,7 +33,7 @@ int main()
 		previousTime = (float)glfwGetTime();
 		camera.onUpdate(deltaTime);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 
