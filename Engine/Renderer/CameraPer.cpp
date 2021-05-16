@@ -12,8 +12,8 @@ namespace Engine
 using namespace Events;
 
 CameraPer::CameraPer(float screenWidth, float screenHeight) noexcept
-	:_mouseMoved{0.0, 0.0},
-	_projection{ glm::perspective(glm::radians(45.0f), screenWidth / screenHeight, 0.1f, 100.0f) },
+	:Camera{ glm::perspective(glm::radians(45.0f), screenWidth / screenHeight, 0.1f, 100.0f) },
+	_mouseMoved{0.0, 0.0},
     _UBO{(sizeof(glm::mat4) + sizeof(glm::vec3))}
 {
     _UBO.bindBufferBlock(0);

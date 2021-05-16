@@ -2,6 +2,8 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+#include "Camera.hpp"
+
 #include "../Shaders/Shader.hpp"
 #include "../Events/MouseEvents.hpp"
 #include "../Events/KeyboardEvents.hpp"
@@ -11,11 +13,6 @@
 namespace Engine
 {
 
-struct cameraMatricies
-{
-	glm::mat4 projection;
-	glm::mat4 view;
-};
 
 /*
 Perspective camera wrapper
@@ -26,15 +23,13 @@ Default camera controls are
 WASD 
 and mouse moving
 */
-class CameraPer
+class CameraPer : public Camera
 {
 public:
 	CameraPer(float screenWidth, float screenHeight) noexcept;
 	~CameraPer() = default;
 
 	void onUpdate(float deltaTime);
-
-	const cameraMatricies getMatricies() const noexcept { return{ _projection, _view}; }
 
 private:
 	bool handleKeyPressed(Events::KeyPressedEvent* ev);
@@ -47,9 +42,6 @@ private:
 private:
     //UBO for sharing the view projection matrix with all the shaders
     UniformBuffer _UBO;
-
-	glm::mat4 _projection;
-	glm::mat4 _view = glm::mat4{1.0f};
 
     //initially spawn slightly in the back
 	glm::vec3 _cameraPos = { 0.0f, 0.0f, 3.0f };
@@ -66,8 +58,8 @@ private:
 
 	glm::vec2 _mouseMoved;
 
-	double _lastX = 0.0;
-	double _lastY = 0.0;
+	float _lastX = 0.0f;
+	float _lastY = 0.0f;
 
 	float _sensitivity = 0.1f;
 

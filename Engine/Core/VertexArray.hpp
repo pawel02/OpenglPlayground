@@ -72,7 +72,7 @@ namespace Engine
 			_indexBuffer{ std::move(other._indexBuffer) },
 			_vertexLayout{ std::move(other._vertexLayout) }
 		{
-			other.vertex_array = 4294967295;
+			other.vertexArray = UINT_MAX;
 		};
 
 		VertexArray<VertexType, IndexType>& operator=(VertexArray<VertexType, IndexType>&& other) noexcept
@@ -87,7 +87,7 @@ namespace Engine
 
 				// set this to the max to make sure that you don't delete the 
 				// VertexArray when the temp object gets destroyed
-				other.vertexArray = 4294967295;
+				other.vertexArray = UINT_MAX;
 			}
 
 			return *this;

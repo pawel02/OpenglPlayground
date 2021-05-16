@@ -6,7 +6,7 @@ namespace Engine
 namespace Meshes
 {
 // These are the vertices
-    float simpleCube[216] = {
+    static float simpleCube[216] = {
 		// positions          
 		-1.0f,  1.0f, -1.0f,
 		-1.0f, -1.0f, -1.0f,
@@ -51,7 +51,7 @@ namespace Meshes
 		 1.0f, -1.0f,  1.0f
 	};
 
-    float Cube[288] = {
+    static float Cube[288] = {
 		// positions          // normals           // texture coords
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
 		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
@@ -96,7 +96,7 @@ namespace Meshes
 		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 	};
 
-	VertexArray<float, unsigned int> createSimpleCube()
+	static VertexArray<float, unsigned int> createSimpleCube()
 	{
 		return VertexArray<float, unsigned int>(
 			simpleCube, sizeof(simpleCube),

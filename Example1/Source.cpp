@@ -15,13 +15,14 @@ int main()
 	//Create the camera
 	Engine::CameraPer camera{ 800, 600};
 
-	//Create the example triangle
-	Engine::VertexArray<float, unsigned int> VAO{Engine::Meshes::createSimpleCube()};
-
+	//Create simple cube mesh
+	Engine::VertexArray<float, unsigned int> VAO{std::move(Engine::Meshes::createSimpleCube())};
 	VAO.CreateVertexArray();
-
 	Engine::Shader program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\vs.glsl", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fs.glsl" };
 
+	//create a default cubemap
+	Engine::Cubemap cubemap{&camera};
+	
 	float deltaTime = 0.0f;
 	float previousTime = 0.0f;
 	while (window.isOpen())
@@ -33,9 +34,12 @@ int main()
 		previousTime = (float)glfwGetTime();
 		camera.onUpdate(deltaTime);
 
+		VAO.bind();
+		program.bind();
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-
+		//draw the cubemap
+		cubemap.draw();
 
 		glfwSwapBuffers(window.getWindowPointer());
 		glfwPollEvents();

@@ -151,7 +151,7 @@ public:
 	{
 		glGenBuffers(1, &_buffer);
 		bind();
-		glBufferData(GL_UNIFORM_BUFFER, _dataSize, NULL, _drawMethod);
+		glBufferData(GL_UNIFORM_BUFFER, _dataSize, 0, _drawMethod);
 	}
 
 	UniformBuffer(size_t dataSize, int drawMethod) noexcept
@@ -159,7 +159,7 @@ public:
 	{
 		glGenBuffers(1, &_buffer);
 		bind();
-		glBufferData(GL_UNIFORM_BUFFER, _dataSize, NULL, _drawMethod);
+		glBufferData(GL_UNIFORM_BUFFER, _dataSize, 0, _drawMethod);
 	}
 
 	~UniformBuffer() = default;

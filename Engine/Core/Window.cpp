@@ -39,7 +39,7 @@ int Window::createWindow() noexcept
 	}
 	
 	glfwMakeContextCurrent(_window);
-	glfwSwapInterval(0); //make sure you are not capped at 60 FPS
+	//glfwSwapInterval(0); //make sure you are not capped at 60 FPS
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{

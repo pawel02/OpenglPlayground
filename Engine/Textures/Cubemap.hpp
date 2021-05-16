@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+#include "../Renderer/Camera.hpp"
+
 #include "../Assets/Meshes/Cubes.hpp"
 #include "../Core/VertexArray.hpp"
 #include "../Shaders/Shader.hpp"
@@ -17,26 +19,20 @@ namespace Engine
 
 	public:
 		//default cubemap
-		Cubemap() noexcept
-			:_VAO
-		{
-		 Meshes::simpleCube, sizeof(Engine::Meshes::simpleCube),
-			{
-			 VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
-			}
-		}
+		Cubemap(Camera* camera) noexcept
+			:_VAO{ std::move(Engine::Meshes::createSimpleCube()) },
+			_camera{camera},
+			_program{"E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Engine\\Assets\\Shaders\\cubemap_vs.glsl",
+		             "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Engine\\Assets\\Shaders\\cubemap_fs.glsl" }
 		{
 			loadCubemap();
 		}
 
-		Cubemap(std::vector<const char*> faces) noexcept
-			:_faces{ faces }, _VAO
-			{
-			 Meshes::simpleCube, sizeof(Engine::Meshes::simpleCube),
-				{
-				 VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
-				}
-			}
+		Cubemap(std::vector<const char*> faces, Camera* camera) noexcept
+			:_faces{ faces }, _VAO{std::move(Engine::Meshes::createSimpleCube())},
+			_camera{camera},
+			_program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Engine\\Assets\\Shaders\\cubemap_vs.glsl",
+					  "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Engine\\Assets\\Shaders\\cubemap_fs.glsl" }
 		{
 			loadCubemap();
 		}
@@ -50,6 +46,7 @@ namespace Engine
 	private:
 		VertexArray<float, unsigned int> _VAO;
 		Shader _program;
+		Camera* _camera;
 
 		std::vector<const char*> _faces =
 		{
