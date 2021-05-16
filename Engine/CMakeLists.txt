@@ -20,7 +20,7 @@ file(GLOB HEADERS
     PRIVATE "${PROJECT_SOURCE_DIR}/*.hpp"
 )
 
-add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEST})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 #Add Libraries
 target_include_directories(${PROJECT_NAME} 

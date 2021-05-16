@@ -74,16 +74,20 @@ template<typename T>
 class IndexBuffer
 {
 public:
-	IndexBuffer() = default;
+	IndexBuffer() noexcept 
+		:_isCreated{false}
+	{};
 
 	IndexBuffer(T* data, size_t dataSize) noexcept
-		:_data{ data }, _dataSize{ dataSize }, _drawMethod{ GL_STATIC_DRAW }
+		:_data{ data }, _dataSize{ dataSize }, _drawMethod{ GL_STATIC_DRAW },
+		_isCreated{ true }
 	{
 		glGenBuffers(1, &_buffer);
 	}
 
 	IndexBuffer(T* data, size_t dataSize, int drawMethod) noexcept
-		:_data{ data }, _dataSize{ dataSize }, _drawMethod{ drawMethod }
+		:_data{ data }, _dataSize{ dataSize }, _drawMethod{ drawMethod },
+		_isCreated{ true }
 	{
 		glGenBuffers(1, &_buffer);
 	}
@@ -94,7 +98,8 @@ public:
 		:_buffer{ other._buffer },
 		_drawMethod{ other._drawMethod },
 		_data{ other._data },
-		_dataSize{ other._dataSize }
+		_dataSize{ other._dataSize },
+		_isCreated{other._isCreated }
 	{}
 
 	IndexBuffer& operator=(IndexBuffer&& other) noexcept
@@ -105,6 +110,7 @@ public:
 			_drawMethod = other._drawMethod;
 			_data = other._data;
 			_dataSize = other._dataSize;
+			_isCreated = other._isCreated;
 		}
 		return *this;
 	}
@@ -118,8 +124,11 @@ public:
 	{
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, _dataSize, _data, _drawMethod);
 	}
+
+	bool isCreated() const noexcept { return _isCreated; }
 private:
 	unsigned int _buffer;
+	bool _isCreated = false;
 
 	int _drawMethod;
 
@@ -127,7 +136,9 @@ private:
 	size_t _dataSize;
 };
 
-
+/*
+Used for sharing data between shaders programs
+*/
 class UniformBuffer
 {
 public:

@@ -13,16 +13,14 @@ int main()
 	 0.0f,  0.5f, 0.0f
 	};
 
-	//lets create a triangle
-	unsigned int VAO, VBO;
-	glGenBuffers(1, &VBO);
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	Engine::VertexArray<float, unsigned int> VAO{
+		vertices, sizeof(vertices), 
+		{
+			Engine::VertexAttribLayout{3, GL_FLOAT, GL_FALSE, 3 * sizeof(float)}
+		}
+	};
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (const void*)0);
-	glEnableVertexAttribArray(0);
+	VAO.CreateVertexArray();
 
 	Engine::Shader program{ "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\vs.glsl", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fs.glsl" };
 

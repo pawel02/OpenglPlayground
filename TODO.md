@@ -2,8 +2,8 @@
 
 This is the order that I need to abstract things
 - window
-- Buffers (VAO, VBO, IBO, GL_UNIFORM_BUFFER, FRAMEBUFFER)
 - Textures
+- Framebuffer abstraction (Use the texture abstraction)
 - Events
 - Camera
 - Model loading
