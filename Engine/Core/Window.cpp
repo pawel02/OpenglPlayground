@@ -59,6 +59,8 @@ int Window::createWindow() noexcept
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	registerEvents();
+
     return 0;
 }
 
@@ -112,6 +114,21 @@ void Window::registerEvents() noexcept
 		Events::MouseMovedEvent ev{xpos, ypos};
 		Events::EventBus::publish<Events::MouseMovedEvent>(&ev);
 	});
+
+	//exit when pressing esc by default
+	Events::EventBus::subscribe<Events::KeyPressedEvent>([&](Events::BasicEvent* ev)
+		{
+			Events::KeyPressedEvent* _ev = static_cast<Events::KeyPressedEvent*>(ev);
+			switch (_ev->getCode())
+			{
+				case GLFW_KEY_ESCAPE:
+				{
+					close();
+					break;
+				}
+			}
+			return false;
+		});
 }
 
 bool Window::resize(Events::WindowResizeEvent* ev)

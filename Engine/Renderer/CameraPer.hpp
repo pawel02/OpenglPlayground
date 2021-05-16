@@ -29,7 +29,7 @@ and mouse moving
 class CameraPer
 {
 public:
-	CameraPer(Shader* program, float screenWidth, float screenHeight) noexcept;
+	CameraPer(float screenWidth, float screenHeight) noexcept;
 	~CameraPer() = default;
 
 	void onUpdate(float deltaTime);
@@ -49,7 +49,7 @@ private:
     UniformBuffer _UBO;
 
 	glm::mat4 _projection;
-	glm::mat4 _view;
+	glm::mat4 _view = glm::mat4{1.0f};
 
     //initially spawn slightly in the back
 	glm::vec3 _cameraPos = { 0.0f, 0.0f, 3.0f };

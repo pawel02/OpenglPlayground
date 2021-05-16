@@ -38,7 +38,7 @@ private:
     bool resize(Events::WindowResizeEvent* ev);
 
 private:
-    GLFWwindow* _window;
+    GLFWwindow* _window = nullptr;
 
     struct WindowData
     {
