@@ -1,7 +1,8 @@
 #pragma once
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include "../Events/WindowEvents.hpp"
 
 namespace Engine
 {
@@ -28,8 +29,13 @@ public:
     // Check if the window is open
     inline bool isOpen() noexcept {return !glfwWindowShouldClose(_window); }
 
+    //cursor controls
     inline void hideCursor() noexcept {glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);}
     inline void showCursor() noexcept {glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);}
+
+private:
+    void registerEvents() noexcept;
+    bool resize(Events::WindowResizeEvent* ev);
 
 private:
     GLFWwindow* _window;

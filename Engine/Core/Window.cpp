@@ -1,5 +1,6 @@
 #include "Window.hpp"
-
+#include "../Events/KeyboardEvents.hpp"
+#include "../Events/MouseEvents.hpp"
 #include <iostream>
 
 namespace Engine
@@ -67,5 +68,61 @@ bool Window::close() noexcept
     return true;
 }
 
+void Window::registerEvents() noexcept
+{
+	//store the data pointer in glfw
+	glfwSetWindowUserPointer(_window, &_windowData);
+
+	glfwSetFramebufferSizeCallback(_window, [](GLFWwindow* window, int width, int height) {
+		WindowData& data = *(static_cast<WindowData*>(glfwGetWindowUserPointer(window)));
+		data.width = width;
+		data.height = height;
+
+		Events::WindowResizeEvent ev{width, height};
+		Events::EventBus::publish<Events::WindowResizeEvent>(&ev);
+	});
+
+
+	glfwSetWindowCloseCallback(_window, [](GLFWwindow* window) {
+		Events::WindowCloseEvent ev{};
+		Events::EventBus::publish<Events::WindowCloseEvent>(&ev);
+	});
+
+	//all of the keycallbacks
+	glfwSetKeyCallback(_window, []
+	(GLFWwindow* window, int key, int scancode, int action, int mods) {
+		switch (action)
+		{
+			case GLFW_PRESS:
+			{
+				Events::KeyPressedEvent ev{ key };
+				Events::EventBus::publish<Events::KeyPressedEvent>(&ev);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				Events::KeyReleasedEvent ev{ key };
+				Events::EventBus::publish<Events::KeyReleasedEvent>(&ev);
+				break;
+			}
+		}
+	});
+
+	glfwSetCursorPosCallback(_window, [](GLFWwindow* window, double xpos, double ypos) {
+		Events::MouseMovedEvent ev{xpos, ypos};
+		Events::EventBus::publish<Events::MouseMovedEvent>(&ev);
+	});
+}
+
+bool Window::resize(Events::WindowResizeEvent* ev)
+{
+	glm::vec2 size = ev->getSize();
+
+	_windowData.width = size.x;
+	_windowData.height = size.y;
+
+	glViewport(0, 0, size.x, size.y);
+	return true;
+}
 
 }
