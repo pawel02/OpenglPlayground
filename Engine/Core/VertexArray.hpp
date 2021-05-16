@@ -1,6 +1,7 @@
 #pragma once
 #include "./Buffers.hpp"
 #include <vector>
+#include <climits>
 #include <initializer_list>
 
 
@@ -94,7 +95,7 @@ namespace Engine
 
 		~VertexArray() noexcept
 		{
-			if (vertexArray != 4294967295)
+			if (vertexArray != UINT_MAX)
 			{
 				glDeleteVertexArrays(1, &vertexArray);
 			}

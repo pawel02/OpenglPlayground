@@ -75,7 +75,9 @@ class IndexBuffer
 {
 public:
 	IndexBuffer() noexcept 
-		:_isCreated{false}
+		:_buffer{0},_data {nullptr}, 
+		_dataSize{ 0 }, _drawMethod{ GL_STATIC_DRAW },
+		_isCreated{false}
 	{};
 
 	IndexBuffer(T* data, size_t dataSize) noexcept
