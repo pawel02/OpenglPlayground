@@ -15,3 +15,5 @@
 #include "Events/KeyboardEvents.hpp"
 #include "Events/WindowEvents.hpp"
 #include "Renderer/CameraPer.hpp"
+#include "Meshes/Mesh.hpp"
+#include "Meshes/Model.hpp"

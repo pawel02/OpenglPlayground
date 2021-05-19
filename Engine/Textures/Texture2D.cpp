@@ -11,14 +11,14 @@ namespace Engine
 	Texture2D::Texture2D(const char* filepath)
 	{
 		stbi_set_flip_vertically_on_load(true);
-		add_texture(filepath);
+		addTexture(filepath);
 	}
 
 	Texture2D::Texture2D(const char* filepath,
 		const glm::vec2 texWrap,
 		const glm::vec2 texFiltering)
 	{
-		add_texture(filepath, texWrap, texFiltering);
+		addTexture(filepath, texWrap, texFiltering);
 	}
 
 	Texture2D::Texture2D(const Texture2D& other) noexcept
@@ -35,7 +35,7 @@ namespace Engine
 	{
 	}
 
-	void Texture2D::add_texture(const char* filepath)
+	void Texture2D::addTexture(const std::string& filepath)
 	{
 		_data.emplace_back(TextureData{
 			filepath,
@@ -43,10 +43,10 @@ namespace Engine
 			{ GL_NEAREST_MIPMAP_LINEAR, GL_LINEAR }
 			});
 
-		load_texture();
+		loadTexture();
 	}
 
-	void Texture2D::add_texture(const char* filepath, const glm::vec2 texWrap, const glm::vec2 texFiltering)
+	void Texture2D::addTexture(const std::string& filepath, const glm::vec2 texWrap, const glm::vec2 texFiltering)
 	{
 		_data.emplace_back(TextureData{
 			filepath,
@@ -54,7 +54,7 @@ namespace Engine
 			{ texFiltering }
 			});
 
-		load_texture();
+		loadTexture();
 	}
 
 	void Texture2D::bindAll()
@@ -66,7 +66,7 @@ namespace Engine
 		}
 	}
 
-	void Texture2D::load_texture()
+	void Texture2D::loadTexture()
 	{
 		stbi_set_flip_vertically_on_load(true);
 		const auto data = _data.end() - 1;

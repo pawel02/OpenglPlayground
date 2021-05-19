@@ -17,6 +17,16 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) noexcept
     createProgram();
 }
 
+Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile) noexcept
+{
+    addShader({
+        ShaderStruct{GL_VERTEX_SHADER, vertexFile.c_str()},
+        ShaderStruct{GL_FRAGMENT_SHADER, fragmentFile.c_str()}
+        });
+
+    createProgram();
+}
+
 Shader::Shader(const Shader& other) noexcept
     :_shaders{other._shaders},
     _program{other._program},

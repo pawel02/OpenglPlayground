@@ -42,6 +42,12 @@ file(GLOB_RECURSE EVENTS
     PRIVATE "${PROJECT_SOURCE_DIR}/Events/*.cpp"
 )
 
+file(GLOB_RECURSE MESHES 
+    PRIVATE "${PROJECT_SOURCE_DIR}/Meshes/*.hpp"
+    PRIVATE "${PROJECT_SOURCE_DIR}/Meshes/*.cpp"
+)
+
+
 file(GLOB_RECURSE ASSETS 
     PRIVATE "${PROJECT_SOURCE_DIR}/Assets/Meshes/*.hpp"
 )
@@ -55,6 +61,7 @@ add_library(${PROJECT_NAME}
     ${RENDERER}
     ${TEXTURES}
     ${EVENTS}
+    ${MESHES}
     ${ASSETS}
 )
 
@@ -63,6 +70,7 @@ source_group("Shaders"             FILES ${SHADERS})
 source_group("Textures"            FILES ${TEXTURES})
 source_group("Renderer"            FILES ${RENDERER})
 source_group("Events"              FILES ${EVENTS})
+source_group("Meshes"              FILES ${MESHES})
 source_group("Assets"              FILES ${ASSETS})
 
 #Add Libraries

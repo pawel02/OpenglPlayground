@@ -6,7 +6,7 @@
 
 namespace Engine
 {
-	/*
+/*
 Wrapper for the texture0
 */
 	class Texture2D
@@ -37,21 +37,22 @@ Wrapper for the texture0
 
 		~Texture2D();
 
-		void add_texture(const char* filepath);
-		void add_texture(const char* filepath, const glm::vec2 texWrap, const glm::vec2 texFiltering);
+		void addTexture(const std::string& filepath);
+		void addTexture(const std::string& filepath, const glm::vec2 texWrap, const glm::vec2 texFiltering);
 
-		void add_texture_data(TextureData data)
+
+		void addTextureData(TextureData data)
 		{
 			_data.emplace_back(data);
 		}
 
-		inline const std::vector<TextureData>& get_textures() const noexcept { return _data; };
+		inline const std::vector<TextureData>& getTextures() const noexcept { return _data; };
 
 		void bindAll();
 
 	private:
 		//loads the latest texture in the _data
-		void load_texture();
+		void loadTexture();
 
 	};
 }

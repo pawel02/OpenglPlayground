@@ -1,9 +1,9 @@
 #pragma once
-#include <glad/glad.h>
-
 #include <vector>
 #include <unordered_map>
+#include <string>
 
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 
 struct ShaderStruct
@@ -27,6 +27,7 @@ class Shader
 public:
     Shader() noexcept {};
     Shader(const char* vertexFile, const char* fragmentFile) noexcept;
+    Shader(const std::string& vertexFile, const std::string& fragmentFile) noexcept;
 
     Shader(const Shader& other) noexcept;
     Shader(Shader&& other) noexcept;
