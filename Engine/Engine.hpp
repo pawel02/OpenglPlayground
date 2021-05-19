@@ -6,6 +6,7 @@
 #include "Shaders/Shader.hpp"
 #include "Core/Window.hpp"
 #include "Core/Buffers.hpp"
+#include "Core/Framebuffer.hpp"
 #include "Core/VertexArray.hpp"
 #include "Textures/Texture2D.hpp"
 #include "Textures/Cubemap.hpp"

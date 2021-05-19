@@ -1,7 +1,6 @@
 #pragma once
 #include <glad/glad.h>
 
-
 /*
 Wrappers for :
 - Vertex Array Buffer

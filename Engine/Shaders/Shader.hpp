@@ -28,6 +28,12 @@ public:
     Shader() noexcept {};
     Shader(const char* vertexFile, const char* fragmentFile) noexcept;
 
+    Shader(const Shader& other) noexcept;
+    Shader(Shader&& other) noexcept;
+
+    Shader& operator=(const Shader& other) noexcept;
+    Shader& operator=(Shader&& other) noexcept;
+
     void addShader(int shaderType, const char* shaderFile) noexcept;
     //convinience function to help with adding multiple shaders at once
     void addShader(std::initializer_list<ShaderStruct> shaders) noexcept;

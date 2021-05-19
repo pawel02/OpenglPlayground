@@ -17,6 +17,36 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) noexcept
     createProgram();
 }
 
+Shader::Shader(const Shader& other) noexcept
+    :_shaders{other._shaders},
+    _program{other._program},
+    uniformLocations{other.uniformLocations}
+{
+}
+
+Shader::Shader(Shader&& other) noexcept
+    :_shaders{ std::move(other._shaders) },
+    _program{ other._program },
+    uniformLocations{ std::move(other.uniformLocations) }
+{
+}
+
+Shader& Shader::operator=(const Shader& other) noexcept
+{
+    return Shader{*this};
+}
+
+Shader& Shader::operator=(Shader&& other) noexcept
+{
+    if (this != &other)
+    {
+        _shaders = std::move(other._shaders);
+        _program = other._program;
+        uniformLocations = std::move(other.uniformLocations);
+    }
+    return *this;
+}
+
 void Shader::addShader(std::initializer_list<ShaderStruct> shaders) noexcept
 {
     for(const auto& shader : shaders)

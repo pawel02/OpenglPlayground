@@ -26,11 +26,24 @@ int main()
 	//create a default cubemap
 	Engine::Cubemap cubemap{&camera};
 	
+	//create a framebuffer
+	Engine::Framebuffer fbo{ 800, 600, { "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fbo.vs", "E:\\pawel\\coding(learning)\\c++\\PlayingWithOpenGL\\Example1\\shaders\\fbo.fs" } };
+	Engine::Framebuffer::FramebufferStatus fbo_status = fbo.init();
+	
+	if (fbo_status != Engine::Framebuffer::FramebufferStatus::success)
+	{
+		std::cout << "Could not create the framebuffer\n";
+		return -1;
+	}
+
 	float deltaTime = 0.0f;
 	float previousTime = 0.0f;
 	while (window.isOpen())
 	{
-		glClearColor(0.1f, 0.1f, 0.1f, 0.1f);
+		//draw to my custom buffer
+		fbo.bind();
+
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		
 		deltaTime = (float)glfwGetTime() - previousTime;
@@ -40,11 +53,13 @@ int main()
 		VAO.bind();
 		program.bind();
 		texture.bindAll();
-		//glBindVertexArray(0);
 		glCheckError(glDrawArrays(GL_TRIANGLES, 0, 36));
 
 		//draw the cubemap
 		cubemap.draw();
+
+		//draw to the default framebuffer
+		fbo.draw();
 
 		glfwSwapBuffers(window.getWindowPointer());
 		glfwPollEvents();
