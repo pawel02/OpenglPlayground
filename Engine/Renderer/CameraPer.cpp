@@ -111,6 +111,15 @@ bool CameraPer::handleKeyPressed(KeyPressedEvent* ev)
 			_keysDown |= BIT(3);
 			break;
 		}
+		case GLFW_KEY_P:
+		{
+			if(isPolygonFill) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+			isPolygonFill = !isPolygonFill;
+
+			break;
+		}
 	}
 
 	return false;

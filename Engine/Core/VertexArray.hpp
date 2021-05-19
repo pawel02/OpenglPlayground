@@ -142,6 +142,4 @@ namespace Engine
 		VertexBuffer<VertexType> _vertexBuffer;
 		IndexBuffer<IndexType> _indexBuffer;
 	};
-
-
 }

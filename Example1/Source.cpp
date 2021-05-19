@@ -13,7 +13,7 @@ int main()
 	window.hideCursor();
 
 	//Create the camera
-	Engine::CameraPer camera{ 800, 600};
+	Engine::CameraPer camera{ 800, 600 };
 
 	//Create simple cube mesh
 	Engine::VertexArray<float, unsigned int> VAO{std::move(Engine::Meshes::createCube())};
@@ -40,7 +40,8 @@ int main()
 		VAO.bind();
 		program.bind();
 		texture.bindAll();
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//glBindVertexArray(0);
+		glCheckError(glDrawArrays(GL_TRIANGLES, 0, 36));
 
 		//draw the cubemap
 		cubemap.draw();

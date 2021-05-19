@@ -2,6 +2,7 @@
 
 // Include all of the necessary headers for compilation
 
+#include "Core/Debugging.hpp"
 #include "Shaders/Shader.hpp"
 #include "Core/Window.hpp"
 #include "Core/Buffers.hpp"

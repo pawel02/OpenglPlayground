@@ -1,3 +1,4 @@
+#include "../Core/Debugging.hpp"
 #include "Window.hpp"
 #include "../Events/KeyboardEvents.hpp"
 #include "../Events/MouseEvents.hpp"
@@ -24,8 +25,8 @@ int Window::createWindow() noexcept
         return -1;
 	}
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4.6);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4.6);
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
@@ -46,6 +47,9 @@ int Window::createWindow() noexcept
 		std::cout << "Could not initialize GLAD context\n";
         return -3;
 	}
+
+	//enable extra debugging info if available
+	Debugging::initializeDebugger();
 
 	glViewport(0, 0, _windowData.width, _windowData.height);
 

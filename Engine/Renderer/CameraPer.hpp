@@ -65,6 +65,8 @@ private:
 
 	float _yaw = -90.0f;
 	float _pitch = 0.0f;
+
+	bool isPolygonFill = true;
 };
 
 }
