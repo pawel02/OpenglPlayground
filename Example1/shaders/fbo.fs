@@ -5,7 +5,7 @@ in vec2 TexCoords;
 uniform sampler2D tex;
 
 // example of a blur effect
-const float offset = 1.0 / 800.0;
+const float offset = 1.0 / 300.0;
 
 void main()
 {
