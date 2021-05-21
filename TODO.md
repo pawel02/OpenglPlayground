@@ -1,12 +1,13 @@
 # TODO
 
 This is the order that I need to abstract things
-- Geometry shader
-- Instancing
-- Anti aliasing
+- Better model loading
 - Sun
 - Point lights
 - spotlights
+- Geometry shader
+- Instancing
+- Anti aliasing
 - Advanced lighting
 - PBR
 - Text rendering
