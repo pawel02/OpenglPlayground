@@ -20,6 +20,13 @@ int main()
     //load the example model
     Engine::Model model{sharedAssetsPath + "backpack/backpack.obj"};
     Engine::Shader model_program{ basePath + "basic.vs", basePath + "basic.gs", basePath + "basic.fs" };
+    
+    glm::mat4 model_matrix{ 1.0f };
+    model_program.setUniformMat4f("model", model_matrix);
+
+    //second program drawing just the vertices
+    Engine::Shader model_program_normals{ basePath + "normal.vs", basePath + "normal.gs", basePath + "normal.fs" };
+    model_program_normals.setUniformMat4f("model", model_matrix);
 
     float prevTime = (float)glfwGetTime();
     float deltaTime = 0.0f;
@@ -33,8 +40,15 @@ int main()
         camera.onUpdate(deltaTime);
 
         //draw everything that you want
-        model_program.setUniform1f("time", prevTime);
         model.Draw(model_program);
+
+   
+        //upadate the view and projection matricies
+        Engine::cameraMatricies matricies = camera.getMatricies();
+        model_program_normals.setUniformMat4f("view", matricies.view);
+        model_program_normals.setUniformMat4f("projection", matricies.projection);
+
+        model.Draw(model_program_normals);
 
 
         glfwSwapBuffers(window.getWindowPointer());

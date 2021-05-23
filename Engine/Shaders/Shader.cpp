@@ -176,7 +176,7 @@ int Shader::getUniformLocation(const char* uniformName) noexcept
 #ifdef _DEBUG
     if (uniformLocation < 0)
     {
-        assert("Could not find the unifrom");
+        printf("Could not find the unifrom %s\n", uniformName);
     }
 #endif
 
