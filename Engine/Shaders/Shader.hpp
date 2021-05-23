@@ -29,6 +29,9 @@ public:
     Shader(const char* vertexFile, const char* fragmentFile) noexcept;
     Shader(const std::string& vertexFile, const std::string& fragmentFile) noexcept;
 
+    Shader(const char* vertexFile, const char* geometryFile,const char* fragmentFile) noexcept;
+    Shader(const std::string& vertexFile, const std::string& geometryFile, const std::string& fragmentFile) noexcept;
+
     Shader(const Shader& other) noexcept;
     Shader(Shader&& other) noexcept;
 

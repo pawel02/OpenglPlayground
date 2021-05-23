@@ -76,7 +76,7 @@ int main()
 	program.setUniform1f("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
 
 	//set the material texture
-	program.setUniform3f("material.diffuse", 0.8f, 0.2f, 1.0f);
+	program.setUniform3f("material.diffuse", 0.5f, 1.0f, 0.02f);
 	program.setUniform3f("material.specular", 1.0f, 1.0f, 1.0f);
 	program.setUniform1f("material.shininess", 256.0f);
 

@@ -27,6 +27,31 @@ Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile) n
     createProgram();
 }
 
+
+Shader::Shader(const char* vertexFile, const char* geometryFile, const char* fragmentFile) noexcept
+{
+    addShader({
+        ShaderStruct{GL_VERTEX_SHADER, vertexFile},
+        ShaderStruct{GL_GEOMETRY_SHADER, geometryFile},
+        ShaderStruct{GL_FRAGMENT_SHADER, fragmentFile}
+        });
+
+    createProgram();
+}
+
+Shader::Shader(const std::string& vertexFile, const std::string& geometryFile, const std::string& fragmentFile) noexcept
+{
+    addShader({
+        ShaderStruct{GL_VERTEX_SHADER, vertexFile.c_str()},
+        ShaderStruct{GL_GEOMETRY_SHADER, geometryFile.c_str()},
+        ShaderStruct{GL_FRAGMENT_SHADER, fragmentFile.c_str()}
+        });
+
+    createProgram();
+}
+
+
+
 Shader::Shader(const Shader& other) noexcept
     :_shaders{other._shaders},
     _program{other._program},
