@@ -58,11 +58,15 @@ int main()
         }
     }
 
-    //set all the offsets 
-    for (int i = 0; i < 100; i++)
-    {
-        program.setUniform2f((std::string("offsets[") + std::to_string(i) + std::string("]")).c_str(), translations[i]);
-    }
+    //add an instance buffer to the VAO
+    Engine::VertexBuffer<glm::vec2> VBO{ &(translations[0]), sizeof(glm::vec2) * 100 };
+    VBO.bind();
+    VBO.setData();
+
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    //tells OpenGL where how many strides it should go after drawing 1 triangle in the translations array. In this case go up 1
+    glVertexAttribDivisor(2, 1);
 
     while (window.isOpen())
     {
