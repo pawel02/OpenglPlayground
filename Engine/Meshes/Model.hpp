@@ -18,6 +18,7 @@ public:
 	Model(const std::string& filepath) noexcept;
 
 	void Draw(Shader& shader);
+	const std::vector<Mesh>& getMeshes() const noexcept { return meshes; }
 private:
 	void loadModel(const char* filepath);
 	void processNode(aiNode* node, const aiScene* scene);

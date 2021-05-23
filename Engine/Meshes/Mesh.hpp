@@ -20,6 +20,7 @@ public:
 	Mesh(Mesh&& other) noexcept;
 
 	void Draw(Shader& shader);
+	const VertexArray<float, unsigned int>& getVAO() const noexcept { return VAO; }
 private:
 	VertexArray<float, unsigned int> VAO;
 };
