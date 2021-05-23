@@ -166,17 +166,17 @@ int Shader::getUniformLocation(const char* uniformName) noexcept
 {
     //making sure that the program is bound
     bind();
-    if (uniformLocations.find(uniformName) != uniformLocations.end())
+    if (uniformLocations.find(std::string{ uniformName }) != uniformLocations.end())
     {
-        return uniformLocations.at(uniformName);
+        return uniformLocations.at(std::string{ uniformName });
     }
 
     int uniformLocation = glGetUniformLocation(_program, uniformName);
-    uniformLocations.insert(std::pair<const char*, int>{ uniformName, uniformLocation});
+    uniformLocations.insert(std::pair<std::string, int>{ uniformName, uniformLocation});
 #ifdef _DEBUG
     if (uniformLocation < 0)
     {
-        printf("Could not find the unifrom %s\n", uniformName);
+        printf("Could not find the uniform %s\n", uniformName);
     }
 #endif
 
@@ -210,6 +210,17 @@ void Shader::setUniform3f(const char* uniform_name, glm::vec3& vec) noexcept
 {
 	int uniform_location = getUniformLocation(uniform_name);
 	glUniform3f(uniform_location, vec.x, vec.y, vec.z);
+}
+
+void Shader::setUniform2f(const char* uniform_name, float x, float y) noexcept
+{
+    int uniform_location = getUniformLocation(uniform_name);
+    glUniform2f(uniform_location, x, y);
+}
+void Shader::setUniform2f(const char* uniform_name, glm::vec2& vec) noexcept
+{
+    int uniform_location = getUniformLocation(uniform_name);
+    glUniform2f(uniform_location, vec.x, vec.y);
 }
 
 void Shader::setUniform1i(const char* uniform_name, int i)

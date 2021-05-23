@@ -58,6 +58,9 @@ public:
 
 	void setUniform3f(const char* uniformName, float x, float y, float z) noexcept;
     void setUniform3f(const char* uniformName, glm::vec3& vec) noexcept;
+
+    void setUniform2f(const char* uniformName, float x, float y) noexcept;
+    void setUniform2f(const char* uniformName, glm::vec2& vec) noexcept;
 	
 	void setUniform1i(const char* uniformName, int i);
 	void setUniform1f(const char* uniformName, float i);
@@ -74,7 +77,7 @@ private:
 
     int success = 0;
     char infoLog[512] = "";
-    std::unordered_map<const char*, int> uniformLocations;
+    std::unordered_map<std::string, int> uniformLocations;
 };
 
 }

@@ -1,3 +1,7 @@
+/*
+Geometry shader example
+*/
+
 #include <iostream>
 #include <Engine.hpp>
 

@@ -1,3 +1,6 @@
+/*
+Lighting example
+*/
 #include <iostream>
 #include <string>
 #include <Engine.hpp>
