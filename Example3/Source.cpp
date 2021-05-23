@@ -33,6 +33,7 @@ int main()
         camera.onUpdate(deltaTime);
 
         //draw everything that you want
+        model_program.setUniform1f("time", prevTime);
         model.Draw(model_program);
 
 
