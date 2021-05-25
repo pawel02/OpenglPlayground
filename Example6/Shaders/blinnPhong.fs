@@ -26,11 +26,11 @@ void main()
     float diff = max(dot(normal, lightDir), 0.0);
 
     // specular shading
-    float spec = pow(max(dot(normal, halfwayDir), 0.0), 32);
+    float spec = pow(max(dot(-normal, halfwayDir), 0.0), 32.0);
 
     // combine results
-    vec3 ambient = vec3(0.1, 0.1, 0.1) * texture(tex, TexCoords).rgb;
-    vec3 diffuse = vec3(0.3, 0.3, 0.3) * diff * texture(tex, TexCoords).rgb;
-    vec3 specular = vec3(0.5, 0.5, 0.5) * spec;
+    vec3 ambient = vec3(0.1) * texture(tex, TexCoords).rgb;
+    vec3 diffuse = vec3(0.3) * diff * texture(tex, TexCoords).rgb;
+    vec3 specular = vec3(0.5) * spec;
     FragColor = vec4(ambient + diffuse + specular, 1.0);
 }

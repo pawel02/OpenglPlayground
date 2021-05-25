@@ -26,16 +26,23 @@ int main()
     Engine::Shader planeProgram{ basePath + "blinnPhong.vs", basePath + "blinnPhong.fs"};
     
     glm::mat4 planeMatrix{ 1.0f };
-    planeMatrix = glm::translate(planeMatrix, glm::vec3(0.0f, 19.0f, 0.0f));
-    planeMatrix = glm::rotate(planeMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    planeMatrix = glm::translate(planeMatrix, glm::vec3(0.0f, -21.0f, 0.0f));
+    planeMatrix = glm::rotate(planeMatrix, glm::radians(90.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
     planeMatrix = glm::scale(planeMatrix, glm::vec3(20.0f));
 
     planeProgram.setUniformMat4f("model", planeMatrix);
 
-    //set all of the lighting
-    planeProgram.setUniform3f("lightPos", -3.0f, 5.0f, 1.0f);
+    glm::vec3 lightPos{ 0.0f, 5.0f, 0.0f };
 
-    glDisable(GL_CULL_FACE);
+    //set all of the lighting
+    planeProgram.setUniform3f("lightPos", lightPos);
+
+    Engine::VertexArray<float, unsigned int> cube{ Engine::Meshes::createSimpleCube() };
+    cube.CreateVertexArray();
+    Engine::Shader cubeProgram{ basePath + "basic.vs", basePath + "basic.fs" };
+
+    glm::mat4 cubeMatrix = glm::translate(glm::mat4{ 1.0f }, lightPos);
+    cubeProgram.setUniformMat4f("model", cubeMatrix);
 
     float prevTime = (float)glfwGetTime();
     float deltaTime = 0.0f;
@@ -54,6 +61,11 @@ int main()
         planeProgram.bind();
         textures.bindAll();
         glDrawArrays(GL_TRIANGLES, 0, plane.getCount());
+
+        //draw the cube
+        cube.bind();
+        cubeProgram.bind();
+        glDrawArrays(GL_TRIANGLES, 0, cube.getCount());
 
         glfwSwapBuffers(window.getWindowPointer());
         glfwPollEvents();
