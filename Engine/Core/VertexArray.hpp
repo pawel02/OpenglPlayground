@@ -136,6 +136,16 @@ namespace Engine
 			glBindVertexArray(vertexArray);
 		}
 
+		int getCount() const noexcept
+		{
+			if (_indexBuffer.isCreated())
+			{
+				return _indexBuffer.getCount();
+			}
+
+			return _vertexBuffer.getCount();
+		}
+
 	private:
 		unsigned int vertexArray = 0;
 		std::vector<VertexAttribLayout> _vertexLayout;

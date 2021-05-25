@@ -27,6 +27,7 @@ int Window::createWindow() noexcept
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4.6);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4.6);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif

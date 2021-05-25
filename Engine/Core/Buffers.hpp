@@ -60,6 +60,11 @@ public:
 		glBufferData(GL_ARRAY_BUFFER, _dataSize, _data, _drawMethod);
 	}
 
+	int getCount() const noexcept
+	{
+		return _dataSize / sizeof(T);
+	}
+
 private:
 	unsigned int _buffer;
 
@@ -127,6 +132,11 @@ public:
 	}
 
 	bool isCreated() const noexcept { return _isCreated; }
+
+	int getCount() const noexcept
+	{
+		return _dataSize / sizeof(T);
+	}
 private:
 	unsigned int _buffer;
 	bool _isCreated = false;
